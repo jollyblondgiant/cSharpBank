@@ -1,0 +1,40 @@
+<h3>Account Information</h3>
+@using BankAccounts.Models
+@using Microsoft.AspNetCore.Http
+@model Transaction
+@{
+    
+}
+<h2>Welcome, @Context.Session.GetString("UserName")</h2>
+<form asp-action="DepositWithdraw" asp-controller="Home" method="POST">
+    @Html.Raw(TempData["AlertMessage"])
+    <label asp-for="Amount"></label>
+    <input step= ".01" type="number" asp-for="Amount">
+
+
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Transaction #</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach(var transaction in ViewBag.Transactions)
+        {
+        <tr>
+            <th scope="row">@transaction.ID</th>
+            <td>@transaction.Amount</td>
+            <td>@transaction.CreatedAt</td>
+            
+        </tr>
+        }
+    }
+    </tbody>
+</table>
+<h3>Balance : </h3>  <h2>@Context.Session.GetInt32("Balance")</h2>

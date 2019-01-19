@@ -1,0 +1,18 @@
+<h2>Login</h2>
+@using BankAccounts.Models;
+
+@model LogView
+<form asp-action="Login" asp-controller="Home" method="POST">
+    
+    <span asp-validation-for="Email"></span>
+    <label asp-for="Email"></label>
+    <input class="form-control" asp-for="Email">
+
+    <span asp-validation-for="Password"></span>
+    <label asp-for="Password"></label>
+    <input type="password" class="form-control" asp-for="Password">
+
+    <input type="submit" value="Log In!" class="btn btn-success">
+</form>
+
+<p>Don't have an account?</p>  <a class="btn btn-primary" href="/">Register</a>
